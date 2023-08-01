@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 
 namespace tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao Posicao { get; set; }
         public Cor Cor { get; protected set; }
         public int qteMovimentos { get; protected set; }
-        public Tabuleiro Tabuleiro { get; set; }
+        public Tabuleiro Tab { get; set; }
 
-        public Peca(Tabuleiro tabuleiro, Cor cor)
+        public Peca(Tabuleiro tab, Cor cor)
         {
             Posicao = null;
             Cor = cor;
-            Tabuleiro = tabuleiro;
+            Tab = tab;
             qteMovimentos = 0;
+        }
+
+        public abstract bool[,] MovimentosPossiveis();
+
+        public void incrementarQteMovimentos()
+        {
+            qteMovimentos++;
         }
     }
 }
