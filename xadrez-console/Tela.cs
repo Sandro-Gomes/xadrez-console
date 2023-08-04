@@ -1,11 +1,48 @@
 ﻿using System;
 using tabuleiro;
 using xadrez;
+using System.Collections.Generic;
 
 namespace xadrez_console
 {
     class Tela
     {
+
+        public static void ImprimirPartida(PartidaDeXadrez partida)
+        {
+            Tela.imprimirTabuleiro(partida.Tab);
+            Console.WriteLine();
+            ImprimirPecasCapturadas(partida);
+            Console.WriteLine("Turno: " + partida.Turno);
+            Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
+        }
+
+        public static void ImprimirPecasCapturadas(PartidaDeXadrez partida)
+        {
+            Console.WriteLine("Peças Capturadas");
+            Console.Write("Brancas: ");
+            ImprimirConjunto(partida.PecasCapturadas(Cor.Branca));
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine();
+            Console.Write("Pretas: ");  
+            ImprimirConjunto(partida.PecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        public static void ImprimirConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+            foreach (Peca x in conjunto)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
+
+
+
         public static void imprimirTabuleiro(Tabuleiro tab)
         {
             for (int i = 0; i < tab.Linhas; i++)
@@ -20,7 +57,7 @@ namespace xadrez_console
             Console.WriteLine("  A B C D E F G H ");
         }
 
-        public static void imprimirTabuleiro(Tabuleiro tab, bool[,]posicoesPossiveis)
+        public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
         {
 
             ConsoleColor fundoOriginal = Console.BackgroundColor;
@@ -31,7 +68,7 @@ namespace xadrez_console
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.Colunas; j++)
                 {
-                    if(posicoesPossiveis[i,j] == true)
+                    if (posicoesPossiveis[i, j] == true)
                     {
                         Console.BackgroundColor = fundoAlterado;
                     }
@@ -77,7 +114,7 @@ namespace xadrez_console
                 }
                 Console.Write(" ");
             }
-            
+
         }
     }
 }
