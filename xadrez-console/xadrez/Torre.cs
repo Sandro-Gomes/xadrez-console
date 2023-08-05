@@ -20,6 +20,7 @@ namespace xadrez
 
         private bool PodeMover(Posicao pos)
         {
+            //verifica numa dada posição se é possível mover para ela (vazia ou peça adversaria)
             Peca p = Tab.Peca(pos);
             return p == null || p.Cor != Cor;
         }

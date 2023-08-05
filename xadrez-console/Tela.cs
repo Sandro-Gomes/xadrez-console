@@ -13,11 +13,22 @@ namespace xadrez_console
             Tela.imprimirTabuleiro(partida.Tab);
             Console.WriteLine();
             ImprimirPecasCapturadas(partida);
+            Console.WriteLine();
             Console.WriteLine("Turno: " + partida.Turno);
-            Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
-            if (partida.Xeque)
+
+            if (!partida.Terminada)
             {
-                Console.WriteLine("XEQUE!");
+                Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
+                if (partida.Xeque)
+                {
+                    Console.WriteLine("XEQUE!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Xeque-Mate!");
+                Console.WriteLine("Vencedor: " + partida.JogadorAtual);
+                Console.ReadLine();
             }
         }
 
@@ -69,6 +80,7 @@ namespace xadrez_console
 
             for (int i = 0; i < tab.Linhas; i++)
             {
+                Console.BackgroundColor = fundoOriginal;
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.Colunas; j++)
                 {
@@ -84,8 +96,9 @@ namespace xadrez_console
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  A B C D E F G H ");
             Console.BackgroundColor = fundoOriginal;
+            Console.WriteLine("  A B C D E F G H ");
+            
         }
 
         public static PosicaoXadrez LerPosicaoXadrez()
