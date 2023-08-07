@@ -8,9 +8,12 @@ namespace xadrez
 {
     class Torre : Peca
     {
+
+        
+
         public Torre(Tabuleiro tab, Cor cor) : base(tab, cor)
         {
-
+           
 
         }
         public override string ToString()
@@ -24,6 +27,8 @@ namespace xadrez
             Peca p = Tab.Peca(pos);
             return p == null || p.Cor != Cor;
         }
+
+        
 
         public override bool[,] MovimentosPossiveis()
         {
@@ -77,6 +82,8 @@ namespace xadrez
                 }
                 pos.Coluna = pos.Coluna - 1;
             }
+
+            
 
 
             return mat;
