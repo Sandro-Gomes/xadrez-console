@@ -40,6 +40,11 @@ namespace xadrez_console
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
 
                 Console.Clear();
@@ -52,6 +57,7 @@ namespace xadrez_console
                 Console.WriteLine(e.Message);
                 Console.ReadLine();
             }
+            
 
 
             Console.ReadLine();
